@@ -20,8 +20,7 @@ const FoodsList = ({ foods, columns = 2, gap = 80, variant = 'home'}: Props) => 
         category={food.category}
         destaque={index === 0 ? true : food.destaque}
         score={food.score}
-        variant={variant}
-      />
+        variant={variant} id={food.id}      />
     ))}
   </ListContainer>
 )

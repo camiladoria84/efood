@@ -1,21 +1,18 @@
 import styled from 'styled-components'
-import { cores } from "../../styles"
+import { cores } from '../../styles'
 
 export const BannerContainer = styled.div`
-    width: 100vw;
+    width: 100%;
     height: 280px;
-    flex-shrink: 0;
 
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
 
-    position: relative;
-
     img {
         position: absolute;
-        top: 0;
-        left: 0;
+        inset: 0; /* top: 0, left: 0, right: 0, bottom: 0 */
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -29,6 +26,7 @@ export const BannerContainer = styled.div`
         display: flex;
         align-items: flex-end;
         justify-content: flex-start;
+
         width: 100%;
         max-width: 1366px;
         height: 100%;
@@ -41,17 +39,14 @@ export const CuisineType = styled.h3`
     position: absolute;
     top: 25px;
     left: 120px;
-    width: 101px;
-    height: 33.25px;
-    flex-shrink: 0;
 
     color: ${cores.branco};
     font-family: Roboto, sans-serif;
     font-size: 32px;
-    font-style: normal;
     font-weight: 100;
     line-height: normal;
-    z-index: 1;
+
+    z-index: 2;
 `
 
 export const RestaurantName = styled.h2`
@@ -60,5 +55,6 @@ export const RestaurantName = styled.h2`
     font-size: 32px;
     font-weight: 900;
     line-height: normal;
+
     margin-bottom: 16px;
-`   
+`

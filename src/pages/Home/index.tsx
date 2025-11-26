@@ -1,28 +1,57 @@
+import { useEffect, useState } from 'react'
+
 import Hero from '../../components/Hero'
 import FoodsList from '../../components/FoodsList'
 import Footer from '../../components/Footer'
-import SushiImg from '../../assets/images/sushi.png'
-import MassaImg from '../../assets/images/lula.png'
 import Food from '../../models/Food'
 
-const foods = [
-    new Food(1, 'Hioki Sushi', 'Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida.Experimente o Japão sem sair do lar com nosso delivery!', SushiImg,'Japonesa', true, 4.9),
-    new Food(3, 'La Dolce Vita Trattoria', 'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!', MassaImg,'Italiana', false, 4.6),
-    new Food(2, 'La Dolce Vita Trattoria', 'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!', MassaImg,'Italiana', false, 4.6),
-    new Food(4, 'La Dolce Vita Trattoria', 'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!', MassaImg,'Italiana', false, 4.6),
-    new Food(5, 'La Dolce Vita Trattoria', 'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!', MassaImg,'Italiana', false, 4.6),
-    new Food(6, 'La Dolce Vita Trattoria', 'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!', MassaImg,'Italiana', false, 4.6),
-]
+interface ApiRestaurant {
+    id: number
+    titulo: string
+    descricao: string
+    capa: string
+    tipo: string
+    destacado: boolean
+    avaliacao: number
+}
 
-const Home = () => (
-    <>
+const Home = () => {
+    const [foods, setFoods] = useState<Food[]>([])
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        fetch('https://api-ebac.vercel.app/api/efood/restaurantes')
+        .then((res) => res.json())
+        .then((data: ApiRestaurant[]) => {
+            const loadedFoods = data.map(
+            (item) =>
+                new Food(
+                item.id,
+                item.titulo,
+                item.descricao,
+                item.capa,
+                item.tipo,
+                item.destacado,
+                item.avaliacao
+                )
+            )
+
+            setFoods(loadedFoods)
+        })
+        .finally(() => setLoading(false))
+    }, [])
+
+    if (loading) return <p>Carregando...</p>
+
+    return (
+        <>
         <Hero />
         <div className="container">
-            <FoodsList foods={foods} columns={2} gap={80} variant="home"/>
+            <FoodsList foods={foods} columns={2} gap={80} variant="home" />
         </div>
         <Footer />
-    </>
-)
+        </>
+    )
+}
 
 export default Home
-

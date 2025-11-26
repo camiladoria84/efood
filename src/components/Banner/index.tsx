@@ -1,13 +1,18 @@
-import MassaImg from '../../assets/images/lula.png'
 import { BannerContainer, RestaurantName, CuisineType } from './styles'
 
-const RestaurantBanner = () => (
+export type BannerProps = {
+    image: string
+    category: string
+    title: string
+}
+
+const RestaurantBanner = ({ image, category, title }: BannerProps) => (
     <BannerContainer>
-        <img src={MassaImg} alt="Restaurante" />
+        <img src={image} alt={title} />
         <div className="container">
             <div>
-                <CuisineType>Italiana</CuisineType>
-                <RestaurantName>La Dolce Vita Trattoria</RestaurantName>
+                <CuisineType>{category}</CuisineType>
+                <RestaurantName>{title}</RestaurantName>
             </div>
         </div>
     </BannerContainer>
