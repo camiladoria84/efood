@@ -6,6 +6,8 @@ export default class Food {
     category?: string
     destaque?: boolean
     score?: number
+    portion?: string 
+    price?: number
 
     constructor(
         id: number,

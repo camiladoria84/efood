@@ -25,10 +25,11 @@ export type Props = {
     category?: string
     destaque?: boolean
     score?: number
+    portion?: string    
+    price?: number 
     variant?: 'home' | 'profile'
 }
 
-// 🔹 Função truncate
 const truncate = (text: string, max: number): string =>
     text.length > max ? text.substring(0, max) + '...' : text
 
@@ -40,6 +41,8 @@ const Food = ({
     category,
     destaque = false,
     score,
+    portion,
+    price,   
     variant = 'home'
 }: Props) => {
     const navigate = useNavigate()
@@ -52,7 +55,6 @@ const Food = ({
     const openModal = () => setIsModalOpen(true)
     const closeModal = () => setIsModalOpen(false)
 
-    // 🔥 aplica truncamento conforme o variant
     const truncatedDescription =
         variant === 'home'
             ? truncate(description, 245)
@@ -125,6 +127,8 @@ const Food = ({
                     image={image}
                     title={title}
                     description={description}
+                    portion={portion} 
+                    price={price}
                 />
             )}
         </>

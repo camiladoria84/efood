@@ -69,6 +69,8 @@ const Profile = () => {
                         title: item.nome,
                         description: item.descricao,
                         image: item.foto,
+                        portion: item.porcao, 
+                        price: item.preco,  
                         variant: 'profile'
                     }))}
                     columns={3}
