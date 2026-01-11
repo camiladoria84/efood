@@ -1,5 +1,4 @@
-
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 type ListContainerProps = {
   columns: number
@@ -9,16 +8,24 @@ type ListContainerProps = {
 
 export const ListContainer = styled.div<ListContainerProps>`
   display: grid;
-  grid-template-columns: repeat(
-    ${(props) => props.columns},
-    ${(props) => (props.variant === 'profile' ? '320px' : '472px')}
-  );
-  column-gap: ${(props) =>
-    props.variant === 'profile'
-      ? '40px'
-      : props.gap
-      ? `${props.gap}px`
-      : '80px'};
+
+  ${({ columns, variant }) => css`
+    grid-template-columns: repeat(
+      ${columns},
+      ${variant === 'profile' ? '320px' : '472px'}
+    );
+  `}
+
+  ${({ gap, variant }) => css`
+    column-gap: ${
+      variant === 'profile'
+        ? '40px'
+        : gap
+        ? `${gap}px`
+        : '80px'
+    };
+  `}
+
   row-gap: 48px;
 
   justify-content: center;
@@ -33,3 +40,4 @@ export const ListContainer = styled.div<ListContainerProps>`
     padding: 0 20px;
   }
 `
+

@@ -1,15 +1,31 @@
 import Food from '../Food'
 import { ListContainer } from './styles'
-import FoodModel from '../../models/Food'
+
+type FoodBase = {
+  id: number
+  title: string
+  description: string
+  image: string
+  category?: string
+  destaque?: boolean
+  score?: number
+  porcao?: string
+  preco?: number
+}
 
 export type Props = {
-  foods: FoodModel[]
+  foods: FoodBase[]
   columns?: number
   gap?: number
   variant?: 'home' | 'profile'
 }
 
-const FoodsList = ({ foods, columns = 2, gap = 80, variant = 'home' }: Props) => (
+const FoodsList = ({
+  foods,
+  columns = 2,
+  gap = 80,
+  variant = 'home'
+}: Props) => (
   <ListContainer columns={columns} gap={gap} variant={variant}>
     {foods.map((food, index) => (
       <Food
@@ -21,8 +37,8 @@ const FoodsList = ({ foods, columns = 2, gap = 80, variant = 'home' }: Props) =>
         category={food.category}
         destaque={index === 0 ? true : food.destaque}
         score={food.score}
-        portion={food.portion}  
-        price={food.price}       
+        porcao={food.porcao}
+        preco={food.preco}
         variant={variant}
       />
     ))}

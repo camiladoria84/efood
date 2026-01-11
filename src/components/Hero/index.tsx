@@ -2,7 +2,7 @@ import { BannerContainer, Title, LogoImage } from './styles'
 import logo from '../../assets/images/logo.png'
 import bannerImg from '../../assets/images/fundo.png'
 
-const Header = () => (
+const Hero = () => (
     <BannerContainer style={{ backgroundImage: `url(${bannerImg})` }}>
         <div className="container">
         <LogoImage src={logo} alt="efood" />
@@ -13,4 +13,4 @@ const Header = () => (
     </BannerContainer>
 )
 
-export default Header
+export default Hero

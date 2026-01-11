@@ -1,33 +1,24 @@
-export default class Food {
+export default class MenuItem {
     id: number
     title: string
     description: string
     image: string
-    category: string
-    destaque: boolean
-    score: number
-    porcao: string
     preco: number
+    porcao: string
 
     constructor(
         id: number,
         title: string,
         description: string,
         image: string,
-        category: string,
-        destaque: boolean,
-        score: number,
-        porcao: string,
-        preco: number 
+        preco: number,
+        porcao: string
     ) {
         this.id = id
         this.title = title
         this.description = description
         this.image = image
-        this.category = category
-        this.destaque = destaque
-        this.score = score
-        this.porcao = porcao
         this.preco = preco
+        this.porcao = porcao
     }
 }

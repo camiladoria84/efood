@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 import Header from '../../components/Header'
@@ -6,82 +5,62 @@ import RestaurantBanner from '../../components/Banner'
 import FoodsList from '../../components/FoodsList'
 import Footer from '../../components/Footer'
 
-type CardapioItem = {
-    id: number
-    nome: string
-    descricao: string
-    foto: string
-    preco: number
-    porcao: string
-}
+import { useGetRestaurantQuery } from '../../services/api'
 
-type Restaurante = {
+type ProfileFood = {
     id: number
-    titulo: string
-    descricao: string
-    tipo: string
-    capa: string
-    avaliacao: number
-    cardapio: CardapioItem[]
+    title: string
+    description: string
+    image: string
+    porcao: string
+    preco: number
 }
 
 const Profile = () => {
     const { id } = useParams<{ id: string }>()
-    const [restaurante, setRestaurante] = useState<Restaurante | null>(null)
-    const [loading, setLoading] = useState(true)
 
-    useEffect(() => {
-        const fetchRestaurant = async () => {
-            try {
-                const response = await fetch(
-                    `https://api-ebac.vercel.app/api/efood/restaurantes/${id}`
-                )
+    const { data: restaurant, isLoading } = useGetRestaurantQuery(id!)
 
-                const data: Restaurante = await response.json()
-                setRestaurante(data)
-            } catch (error) {
-                console.error('Erro ao carregar o restaurante:', error)
-            } finally {
-                setLoading(false)
-            }
-        }
+    if (isLoading) {
+        return <p>Carregando...</p>
+    }
 
-        fetchRestaurant()
-    }, [id])
+    if (!restaurant) {
+        return <p>Restaurante não encontrado.</p>
+    }
 
-    if (loading) return <p>Carregando...</p>
-    if (!restaurante) return <p>Restaurante não encontrado.</p>
+    const foods: ProfileFood[] = restaurant.cardapio.map((item) => ({
+        id: item.id,
+        title: item.nome,
+        description: item.descricao,
+        image: item.foto,
+        porcao: item.porcao,
+        preco: item.preco
+    }))
 
     return (
         <>
-            <Header />
+        <Header />
 
-            <RestaurantBanner
-                image={restaurante.capa}
-                category={restaurante.tipo}
-                title={restaurante.titulo}
+        <RestaurantBanner
+            image={restaurant.capa}
+            category={restaurant.tipo}
+            title={restaurant.titulo}
+        />
+
+        <div className="container">
+            <FoodsList
+            foods={foods}
+            columns={3}
+            gap={40}
+            variant="profile"
             />
+        </div>
 
-            <div className="container">
-                <FoodsList
-                    foods={restaurante.cardapio.map((item) => ({
-                        id: item.id,
-                        title: item.nome,
-                        description: item.descricao,
-                        image: item.foto,
-                        portion: item.porcao, 
-                        price: item.preco,  
-                        variant: 'profile'
-                    }))}
-                    columns={3}
-                    gap={40}
-                    variant="profile"
-                />
-            </div>
-
-            <Footer />
+        <Footer />
         </>
     )
 }
 
 export default Profile
+

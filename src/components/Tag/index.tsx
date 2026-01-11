@@ -1,8 +1,9 @@
+import type { ReactNode } from 'react'
 import { TagContainer } from './styles'
 
 export type Props = {
-    children: string
-    type?: 'destaque' | 'categoria' // tipo da tag
+    children: ReactNode
+    type?: 'destaque' | 'categoria'
 }
 
 const Tag = ({ children, type = 'categoria' }: Props) => {

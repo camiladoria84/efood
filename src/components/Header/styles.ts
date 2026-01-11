@@ -35,7 +35,7 @@ export const Logo = styled.img`
 
 export const LinkHome = styled(Link)`
     position: absolute;
-    top: 78px; /* centralizado em relação à logo */
+    top: 78px;
     left: 120px;
 
     font-size: 18px;
@@ -48,15 +48,19 @@ export const LinkHome = styled(Link)`
     }
 `
 
-export const CartLink = styled(Link)`
+export const CartButton = styled.button`
     position: absolute;
     top: 78px;
     right: 120px;
 
+    background: none;
+    border: none;
+    padding: 0;
+
     font-size: 18px;
     font-weight: 900;
     color: ${cores.vermelho};
-    text-decoration: none;
+    cursor: pointer;
 
     &:hover {
         text-decoration: underline;

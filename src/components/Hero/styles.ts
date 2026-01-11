@@ -2,9 +2,8 @@ import styled from 'styled-components'
 import { cores } from '../../styles'
 
 export const BannerContainer = styled.div`
-    width: 100vw;
+    width: 100%;
     height: 384px;
-    flex-shrink: 0;
 
     display: flex;
     justify-content: center;
@@ -28,7 +27,6 @@ export const BannerContainer = styled.div`
 export const LogoImage = styled.img`
     width: 125px;
     height: 57.5px;
-    flex-shrink: 0;
     margin-bottom: 64px;
 `
 
@@ -36,9 +34,7 @@ export const Title = styled.h2`
     max-width: 539px;
     text-align: center;
     font-size: 36px;
-    font-style: normal;
     font-weight: 900;
-    line-height: normal;
     color: ${cores.vermelho};
     margin-top: 64px;
 `

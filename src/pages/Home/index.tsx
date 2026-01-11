@@ -1,54 +1,52 @@
-import { useEffect, useState } from 'react'
-
 import Hero from '../../components/Hero'
 import FoodsList from '../../components/FoodsList'
 import Footer from '../../components/Footer'
-import Food from '../../models/Food'
 
-interface ApiRestaurant {
+import { useGetRestaurantsQuery } from '../../services/api'
+import type { Restaurant } from '../../services/api'
+
+type HomeFood = {
     id: number
-    titulo: string
-    descricao: string
-    capa: string
-    tipo: string
-    destacado: boolean
-    avaliacao: number
+    title: string
+    description: string
+    image: string
+    category: string
+    destaque: boolean
+    score: number
 }
 
 const Home = () => {
-    const [foods, setFoods] = useState<Food[]>([])
-    const [loading, setLoading] = useState(true)
+    const { data: restaurants, isLoading } = useGetRestaurantsQuery()
 
-    useEffect(() => {
-        fetch('https://api-ebac.vercel.app/api/efood/restaurantes')
-        .then((res) => res.json())
-        .then((data: ApiRestaurant[]) => {
-            const loadedFoods = data.map(
-            (item) =>
-                new Food(
-                item.id,
-                item.titulo,
-                item.descricao,
-                item.capa,
-                item.tipo,
-                item.destacado,
-                item.avaliacao
-                )
-            )
+    if (isLoading) {
+        return <p>Carregando...</p>
+    }
 
-            setFoods(loadedFoods)
-        })
-        .finally(() => setLoading(false))
-    }, [])
+    if (!restaurants) {
+        return <p>Erro ao carregar restaurantes</p>
+    }
 
-    if (loading) return <p>Carregando...</p>
+    const foods: HomeFood[] = restaurants.map((item: Restaurant) => ({
+        id: item.id,
+        title: item.titulo,
+        description: item.descricao,
+        image: item.capa,
+        category: item.tipo,
+        destaque: item.destacado,
+        score: item.avaliacao
+    }))
 
     return (
         <>
         <Hero />
-        <div className="container">
-            <FoodsList foods={foods} columns={2} gap={80} variant="home" />
-        </div>
+
+        <FoodsList
+            foods={foods}
+            columns={2}
+            gap={80}
+            variant="home"
+        />
+
         <Footer />
         </>
     )

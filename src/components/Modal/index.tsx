@@ -12,14 +12,18 @@ import {
 import closeIcon from '../../assets/images/fechar.png'
 import Button from '../Button'
 
+import { useDispatch } from 'react-redux'
+import { add } from '../../store/reducers/cart'
+import Food from '../../models/Food'
+
 export type ModalProps = {
     open: boolean
     onClose: () => void
     image: string
     title: string
     description: string
-    portion?: string
-    price?: number
+    porcao?: string
+    preco?: number
 }
 
 const formatPrice = (value: number) =>
@@ -28,46 +32,72 @@ const formatPrice = (value: number) =>
         currency: 'BRL'
     }).format(value)
 
-    const Modal = ({ open, onClose, image, title, description, portion, price }: ModalProps) => {
+const Modal = ({
+    open,
+    onClose,
+    image,
+    title,
+    description,
+    porcao,
+    preco
+    }: ModalProps) => {
+    const dispatch = useDispatch()
+
     if (!open) return null
+
+    const handleAddToCart = () => {
+        const food = new Food(
+        Date.now(),          // id
+        title,
+        description,
+        image,
+        '',                  // category (não usada no carrinho)
+        false,               // destaque
+        0,                   // score
+        porcao ?? '',
+        preco ?? 0
+        )
+
+        dispatch(add(food))
+        onClose()
+    }
 
     return (
         <Overlay onClick={onClose}>
-        <ModalContainer onClick={(e) => e.stopPropagation()}>
+            <ModalContainer onClick={(e) => e.stopPropagation()}>
+                <CloseButton onClick={onClose}>
+                <img src={closeIcon} alt="Fechar" />
+                </CloseButton>
 
-            <CloseButton onClick={onClose}>
-            <img src={closeIcon} alt="Fechar" />
-            </CloseButton>
+                <ModalImage src={image} alt={title} />
 
-            <ModalImage src={image} alt={title} />
+                <ModalContent>
+                <ModalTitle>{title}</ModalTitle>
 
-            <ModalContent>
-            <ModalTitle>{title}</ModalTitle>
+                <ModalDescription>
+                    {description}
+                    {porcao && (
+                    <>
+                        <br />
+                        <br />
+                        <strong>Serve:</strong> {porcao}
+                    </>
+                    )}
+                </ModalDescription>
 
-            <ModalDescription>
-                {description}
-                {portion && (
-                <>
-                    <br />
-                    <br />
-                    <strong>Serve:</strong> {portion}
-                </>
-                )}
-            </ModalDescription>
-
-            <ModalActions>
-                <Button
-                color="light"
-                title={
-                    price
-                    ? `Adicionar ao carrinho - ${formatPrice(price)}`
-                    : 'Adicionar ao carrinho'
-                }
-                onClick={onClose}
-                />
-            </ModalActions>
-            </ModalContent>
-        </ModalContainer>
+                <ModalActions>
+                    <Button
+                    color="light"
+                    title={
+                        preco
+                        ? `Adicionar ao carrinho - ${formatPrice(preco)}`
+                        : 'Adicionar ao carrinho'
+                    }
+                    onClick={handleAddToCart}
+                    />
+                </ModalActions>
+                </ModalContent>
+            </ModalContainer>
         </Overlay>
     )
 }

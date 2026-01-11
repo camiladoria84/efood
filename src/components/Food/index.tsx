@@ -25,8 +25,8 @@ export type Props = {
     category?: string
     destaque?: boolean
     score?: number
-    portion?: string    
-    price?: number 
+    porcao?: string    
+    preco?: number 
     variant?: 'home' | 'profile'
 }
 
@@ -41,8 +41,8 @@ const Food = ({
     category,
     destaque = false,
     score,
-    portion,
-    price,   
+    porcao,
+    preco,   
     variant = 'home'
 }: Props) => {
     const navigate = useNavigate()
@@ -127,8 +127,8 @@ const Food = ({
                     image={image}
                     title={title}
                     description={description}
-                    portion={portion} 
-                    price={price}
+                    porcao={porcao} 
+                    preco={preco}
                 />
             )}
         </>
