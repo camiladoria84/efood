@@ -30,11 +30,23 @@ export const Sidebar = styled.aside`
         overflow-y: auto;
     }
 
-    ${ButtonContainer} {
+    > ${ButtonContainer} {
         width: 100%;
-        margin-top: 16px;
+        margin-top: 24px;
+    }
+
+    p {
+    color: ${cores.bege};
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    margin-bottom: 16px;
     }
 `
+
+/* ================= CART ITEMS ================= */
 
 export const CartItem = styled.li`
     position: relative;
@@ -59,9 +71,7 @@ export const CartItem = styled.li`
     h3 {
         color: ${cores.vermelho};
         font-size: 16px;
-        font-style: normal;
         font-weight: 900;
-        line-height: normal;
         margin-bottom: 16px;
     }
 
@@ -69,8 +79,6 @@ export const CartItem = styled.li`
         display: block;
         color: ${cores.vermelho};
         font-size: 14px;
-        font-style: normal;
-        font-weight: 400;
         line-height: 22px;
     }
 
@@ -83,8 +91,8 @@ export const CartItem = styled.li`
         cursor: pointer;
 
         img {
-        width: 16px;
-        height: 16px;
+            width: 16px;
+            height: 16px;
         }
     }
 `
@@ -95,7 +103,66 @@ export const Prices = styled.div`
     margin-top: 24px;
     color: ${cores.bege};
     font-size: 14px;
-    font-style: normal;
     font-weight: 700;
-    line-height: normal;
+`
+
+/* ================= DELIVERY / PAYMENT ================= */
+
+export const Title = styled.h3`
+    color: ${cores.bege};
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 16px;
+`
+
+export const Row = styled.div`
+    display: flex;
+    gap: 16px;
+    margin-bottom: 8px;
+`
+
+export const InputGroup = styled.div`
+    flex: 1;
+
+    label {
+        display: block;
+        color: ${cores.bege};
+        font-family: Roboto, sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    input {
+        width: 100%;
+        height: 32px;
+        padding: 0 8px;
+        background-color: ${cores.bege};
+        border: none;
+        box-sizing: border-box;
+        font-family: Roboto, sans-serif;
+        font-size: 14px;
+    }
+`
+
+export const InputSmall = styled(InputGroup)`
+    flex: 1;
+`
+
+export const InputMedium = styled(InputGroup)`
+    flex: 2;
+`
+
+
+export const Buttons = styled.div`
+    margin-top: 24px;
+
+    ${ButtonContainer} {
+        width: 100%;
+        margin-bottom: 8px;
+    }
+
+    ${ButtonContainer}:last-child {
+        margin-bottom: 0;
+    }
 `
