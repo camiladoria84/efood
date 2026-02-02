@@ -1,5 +1,6 @@
-import Button from '../Button'
 import { useDispatch } from 'react-redux'
+
+import Button from '../Button'
 import { clear } from '../../store/reducers/cart'
 
 import { Title, Buttons } from './styles'
@@ -7,7 +8,6 @@ import { Title, Buttons } from './styles'
 const Confirmation = () => {
     const dispatch = useDispatch()
 
-    // ORDER_ID simples (pode ser trocado futuramente por algo vindo da API)
     const orderId = Math.floor(Math.random() * 1000000)
 
     return (

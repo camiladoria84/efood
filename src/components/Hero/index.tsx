@@ -1,6 +1,7 @@
-import { BannerContainer, Title, LogoImage } from './styles'
 import logo from '../../assets/images/logo.png'
 import bannerImg from '../../assets/images/fundo.png'
+
+import { BannerContainer, Title, LogoImage } from './styles'
 
 const Hero = () => (
     <BannerContainer style={{ backgroundImage: `url(${bannerImg})` }}>

@@ -4,12 +4,12 @@ import { cores } from "../../styles"
 interface Props {
     color: 'dark' | 'light'
     variant?: 'home' | 'profile'
+    disabled?: boolean
 }
 
 export const ButtonContainer = styled.button<Props>`
     display: ${({ variant }) => (variant === 'profile' ? 'block' : 'inline-block')};
     width: ${({ variant }) => (variant === 'profile' ? '100%' : 'auto')};
-
     align-self: ${({ variant }) => (variant === 'profile' ? 'stretch' : 'flex-start')};
 
     background-color: ${({ color }) =>
@@ -29,6 +29,11 @@ export const ButtonContainer = styled.button<Props>`
 
     &:hover {
         opacity: 0.92;
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
     }
 `
 

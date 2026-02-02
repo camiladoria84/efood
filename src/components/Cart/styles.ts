@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+
 import { cores } from '../../styles'
 import { ButtonContainer } from '../Button/styles'
 
@@ -106,12 +107,21 @@ export const Prices = styled.div`
     font-weight: 700;
 `
 
+export const EmptyCartMessage = styled.p`
+    color: ${cores.bege};
+    font-size: 14px;
+    line-height: 22px;
+    text-align: center;
+    margin-top: 32px;
+`
+
+
 /* ================= DELIVERY / PAYMENT ================= */
 
 export const Title = styled.h3`
     color: ${cores.bege};
     font-family: Roboto, sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 700;
     margin-bottom: 16px;
 `
@@ -142,6 +152,8 @@ export const InputGroup = styled.div`
         box-sizing: border-box;
         font-family: Roboto, sans-serif;
         font-size: 14px;
+        margin-top: 8px;
+
     }
 `
 

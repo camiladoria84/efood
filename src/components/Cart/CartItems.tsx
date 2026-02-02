@@ -1,10 +1,15 @@
-import Button from '../Button'
-import trashIcon from '../../assets/images/lixo.png'
-import { Prices, CartItem } from './styles'
 import { useDispatch, useSelector } from 'react-redux'
-import type { RootReducer } from '../../store'
+
+import trashIcon from '../../assets/images/lixo.png'
 import { remove, openDelivery } from '../../store/reducers/cart'
+import type { RootReducer } from '../../store'
 import formatPrice from '../../utils/formatPrice'
+
+import Button from '../Button'
+
+import { Prices, CartItem, EmptyCartMessage } from './styles'
+
+
 
 const CartItems = () => {
     const { items } = useSelector((state: RootReducer) => state.cart)
@@ -12,6 +17,14 @@ const CartItems = () => {
 
     const getTotalPrice = () =>
         items.reduce((total, item) => total + item.preco, 0)
+
+    if (items.length === 0) {
+        return (
+            <EmptyCartMessage>
+                O carrinho está vazio, adicione pelo menos um item para continuar com a compra.
+            </EmptyCartMessage>
+        )
+    }
 
     return (
         <>

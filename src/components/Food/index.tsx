@@ -1,21 +1,14 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import {
-    FoodWrapper,
-    FoodImage,
-    Card,
-    Title,
-    Description,
-    TagsOverlay,
-    TitleRow,
-    ScoreContainer
-} from './styles'
+
 
 import Tag from '../Tag'
 import Button from '../Button'
 import Modal from '../Modal'
 import StarIcon from '/src/assets/images/estrela.svg'
+
+import * as S from './styles'
 
 export type Props = {
     id: number
@@ -62,37 +55,37 @@ const Food = ({
 
     return (
         <>
-            <FoodWrapper variant={variant}>
+            <S.FoodWrapper variant={variant}>
                 {variant === 'home' && (
                     <>
-                        <FoodImage src={image} alt={title} variant={variant} />
-                        <TagsOverlay>
+                        <S.FoodImage src={image} alt={title} variant={variant} />
+                        <S.TagsOverlay>
                             {destaque && <Tag type="destaque">Destaque da Semana</Tag>}
                             {category && <Tag type="categoria">{category}</Tag>}
-                        </TagsOverlay>
+                        </S.TagsOverlay>
                     </>
                 )}
 
-                <Card variant={variant}>
+                <S.Card variant={variant}>
                     {variant === 'profile' && (
-                        <FoodImage src={image} alt={title} variant={variant} />
+                        <S.FoodImage src={image} alt={title} variant={variant} />
                     )}
 
                     {variant === 'home' ? (
                         <>
-                            <TitleRow>
-                                <Title variant={variant}>{title}</Title>
+                            <S.TitleRow>
+                                <S.Title variant={variant}>{title}</S.Title>
                                 {score !== undefined && (
-                                    <ScoreContainer>
+                                    <S.ScoreContainer>
                                         <span>{score.toFixed(1)}</span>
                                         <img src={StarIcon} alt="estrela" />
-                                    </ScoreContainer>
+                                    </S.ScoreContainer>
                                 )}
-                            </TitleRow>
+                            </S.TitleRow>
 
-                            <Description variant={variant}>
+                            <S.Description variant={variant}>
                                 {truncatedDescription}
-                            </Description>
+                            </S.Description>
 
                             <Button
                                 color="dark"
@@ -103,11 +96,11 @@ const Food = ({
                         </>
                     ) : (
                         <>
-                            <Title variant={variant}>{title}</Title>
+                            <S.Title variant={variant}>{title}</S.Title>
 
-                            <Description variant={variant}>
+                            <S.Description variant={variant}>
                                 {truncatedDescription}
-                            </Description>
+                            </S.Description>
 
                             <Button
                                 color="light"
@@ -117,8 +110,8 @@ const Food = ({
                             />
                         </>
                     )}
-                </Card>
-            </FoodWrapper>
+                </S.Card>
+            </S.FoodWrapper>
 
             {variant === 'profile' && (
                 <Modal

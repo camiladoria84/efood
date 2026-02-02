@@ -1,17 +1,12 @@
+import { useDispatch, useSelector } from 'react-redux'
+
+import { open } from '../../store/reducers/cart'
+import type { RootReducer } from '../../store'
+
 import logo from '../../assets/images/logo.png'
 import bannerImg from '../../assets/images/fundo.png'
 
-import {
-    HeaderContainer,
-    HeaderContent,
-    LinkHome,
-    Logo,
-    CartButton
-} from './styles'
-
-import { useDispatch, useSelector } from 'react-redux'
-import { open } from '../../store/reducers/cart'
-import type { RootReducer } from '../../store'
+import * as S from './styles'
 
 const Header = () => {
     const dispatch = useDispatch()
@@ -25,17 +20,17 @@ const Header = () => {
     }
 
     return (
-        <HeaderContainer style={{ backgroundImage: `url(${bannerImg})` }}>
-        <HeaderContent>
-            <LinkHome to="/">Restaurantes</LinkHome>
+        <S.HeaderContainer style={{ backgroundImage: `url(${bannerImg})` }}>
+        <S.HeaderContent>
+            <S.LinkHome to="/">Restaurantes</S.LinkHome>
 
-            <Logo src={logo} alt="efood" />
+            <S.Logo src={logo} alt="efood" />
 
-            <CartButton type="button" onClick={openCart}>
+            <S.CartButton type="button" onClick={openCart}>
             {itemsCount} produto(s) no carrinho
-            </CartButton>
-        </HeaderContent>
-        </HeaderContainer>
+            </S.CartButton>
+        </S.HeaderContent>
+        </S.HeaderContainer>
     )
 }
 

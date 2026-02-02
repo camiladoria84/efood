@@ -4,8 +4,12 @@ import Header from '../../components/Header'
 import RestaurantBanner from '../../components/Banner'
 import FoodsList from '../../components/FoodsList'
 import Footer from '../../components/Footer'
+import Loader from '../../components/Loader'
 
 import { useGetRestaurantQuery } from '../../services/api'
+
+import { cores } from '../../styles'
+
 
 type ProfileFood = {
     id: number
@@ -22,7 +26,11 @@ const Profile = () => {
     const { data: restaurant, isLoading } = useGetRestaurantQuery(id!)
 
     if (isLoading) {
-        return <p>Carregando...</p>
+        return (
+            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '50px' }}>
+                <Loader color={cores.vermelho} />
+            </div>
+        )
     }
 
     if (!restaurant) {

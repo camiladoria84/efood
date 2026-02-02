@@ -1,20 +1,13 @@
-import {
-    Overlay,
-    ModalContainer,
-    ModalImage,
-    ModalContent,
-    ModalTitle,
-    ModalDescription,
-    CloseButton,
-    ModalActions
-} from './styles'
-
-import closeIcon from '../../assets/images/fechar.png'
-import Button from '../Button'
-
 import { useDispatch } from 'react-redux'
+
 import { add } from '../../store/reducers/cart'
 import Food from '../../models/Food'
+import Button from '../Button'
+
+import closeIcon from '../../assets/images/fechar.png'
+
+import * as S from './styles'
+
 
 export type ModalProps = {
     open: boolean
@@ -63,18 +56,18 @@ const Modal = ({
     }
 
     return (
-        <Overlay onClick={onClose}>
-            <ModalContainer onClick={(e) => e.stopPropagation()}>
-                <CloseButton onClick={onClose}>
+        <S.Overlay onClick={onClose}>
+            <S.ModalContainer onClick={(e) => e.stopPropagation()}>
+                <S.CloseButton onClick={onClose}>
                 <img src={closeIcon} alt="Fechar" />
-                </CloseButton>
+                </S.CloseButton>
 
-                <ModalImage src={image} alt={title} />
+                <S.ModalImage src={image} alt={title} />
 
-                <ModalContent>
-                <ModalTitle>{title}</ModalTitle>
+                <S.ModalContent>
+                <S.ModalTitle>{title}</S.ModalTitle>
 
-                <ModalDescription>
+                <S.ModalDescription>
                     {description}
                     {porcao && (
                     <>
@@ -83,9 +76,9 @@ const Modal = ({
                         <strong>Serve:</strong> {porcao}
                     </>
                     )}
-                </ModalDescription>
+                </S.ModalDescription>
 
-                <ModalActions>
+                <S.ModalActions>
                     <Button
                     color="light"
                     title={
@@ -95,10 +88,10 @@ const Modal = ({
                     }
                     onClick={handleAddToCart}
                     />
-                </ModalActions>
-                </ModalContent>
-            </ModalContainer>
-        </Overlay>
+                </S.ModalActions>
+                </S.ModalContent>
+            </S.ModalContainer>
+        </S.Overlay>
     )
 }
 

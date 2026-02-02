@@ -1,9 +1,13 @@
+import { useGetRestaurantsQuery } from '../../services/api'
+import type { Restaurant } from '../../services/api'
+
 import Hero from '../../components/Hero'
 import FoodsList from '../../components/FoodsList'
 import Footer from '../../components/Footer'
+import Loader from '../../components/Loader'
 
-import { useGetRestaurantsQuery } from '../../services/api'
-import type { Restaurant } from '../../services/api'
+import { cores } from '../../styles'
+
 
 type HomeFood = {
     id: number
@@ -19,7 +23,11 @@ const Home = () => {
     const { data: restaurants, isLoading } = useGetRestaurantsQuery()
 
     if (isLoading) {
-        return <p>Carregando...</p>
+        return (
+            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '50px' }}>
+                <Loader color={cores.vermelho} />
+            </div>
+        )
     }
 
     if (!restaurants) {
