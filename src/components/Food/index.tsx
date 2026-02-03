@@ -54,7 +54,7 @@ const Food = ({
             : truncate(description, 120)
 
     return (
-        <>
+        <div>
             <S.FoodWrapper $variant={variant}>
                 {variant === 'home' && (
                     <>
@@ -136,7 +136,7 @@ const Food = ({
                     price={price}
                 />
             )}
-        </>
+        </div>
     )
 }
 

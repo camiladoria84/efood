@@ -13,6 +13,7 @@ export const FoodWrapper = styled.div<{ $variant?: 'home' | 'profile' }>`
     display: flex;
     flex-direction: column;
     width: 100%;
+    height: 100%;
     position: relative;
     ${(props) =>
         props.$variant === 'profile' &&
@@ -38,6 +39,7 @@ export const Card = styled.div<{ $variant?: 'home' | 'profile' }>`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    flex: 1;
 `
 
 export const Title = styled.h3<{ $variant?: 'home' | 'profile' }>`
