@@ -18,8 +18,8 @@ export type Props = {
     category?: string
     destaque?: boolean
     score?: number
-    porcao?: string    
-    preco?: number 
+    portion?: string
+    price?: number
     variant?: 'home' | 'profile'
 }
 
@@ -34,8 +34,8 @@ const Food = ({
     category,
     destaque = false,
     score,
-    porcao,
-    preco,   
+    portion,
+    price,
     variant = 'home'
 }: Props) => {
     const navigate = useNavigate()
@@ -55,26 +55,38 @@ const Food = ({
 
     return (
         <>
-            <S.FoodWrapper variant={variant}>
+            <S.FoodWrapper $variant={variant}>
                 {variant === 'home' && (
                     <>
-                        <S.FoodImage src={image} alt={title} variant={variant} />
+                        <S.FoodImage
+                            src={image}
+                            alt={title}
+                            $variant={variant}
+                        />
                         <S.TagsOverlay>
-                            {destaque && <Tag type="destaque">Destaque da Semana</Tag>}
-                            {category && <Tag type="categoria">{category}</Tag>}
+                            {destaque && (
+                                <Tag type="destaque">Destaque da Semana</Tag>
+                            )}
+                            {category && (
+                                <Tag type="categoria">{category}</Tag>
+                            )}
                         </S.TagsOverlay>
                     </>
                 )}
 
-                <S.Card variant={variant}>
+                <S.Card $variant={variant}>
                     {variant === 'profile' && (
-                        <S.FoodImage src={image} alt={title} variant={variant} />
+                        <S.FoodImage
+                            src={image}
+                            alt={title}
+                            $variant={variant}
+                        />
                     )}
 
                     {variant === 'home' ? (
                         <>
                             <S.TitleRow>
-                                <S.Title variant={variant}>{title}</S.Title>
+                                <S.Title $variant={variant}>{title}</S.Title>
                                 {score !== undefined && (
                                     <S.ScoreContainer>
                                         <span>{score.toFixed(1)}</span>
@@ -83,7 +95,7 @@ const Food = ({
                                 )}
                             </S.TitleRow>
 
-                            <S.Description variant={variant}>
+                            <S.Description $variant={variant}>
                                 {truncatedDescription}
                             </S.Description>
 
@@ -96,9 +108,9 @@ const Food = ({
                         </>
                     ) : (
                         <>
-                            <S.Title variant={variant}>{title}</S.Title>
+                            <S.Title $variant={variant}>{title}</S.Title>
 
-                            <S.Description variant={variant}>
+                            <S.Description $variant={variant}>
                                 {truncatedDescription}
                             </S.Description>
 
@@ -120,8 +132,8 @@ const Food = ({
                     image={image}
                     title={title}
                     description={description}
-                    porcao={porcao} 
-                    preco={preco}
+                    portion={portion}
+                    price={price}
                 />
             )}
         </>

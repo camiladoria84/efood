@@ -24,27 +24,34 @@ export const BannerContainer = styled.div`
         position: relative;
         z-index: 1;
         display: flex;
-        align-items: flex-end;
-        justify-content: flex-start;
-
+        flex-direction: column;
+        justify-content: space-between;
+        
         width: 100%;
-        max-width: 1366px;
+        max-width: 1024px;
         height: 100%;
-        padding: 0 120px;
+        padding: 32px 16px;
         box-sizing: border-box;
+
+        @media (max-width: 768px) {
+            padding: 32px 16px; /* Keeping uniform padding for mobile too */
+        }
     }
 `
 
 export const CuisineType = styled.h3`
-    position: absolute;
-    top: 25px;
-    left: 120px;
-
     color: ${cores.branco};
     font-family: Roboto, sans-serif;
     font-size: 32px;
     font-weight: 100;
     line-height: normal;
+
+    z-index: 2;
+    margin-bottom: auto; /* Push to top if in flex container */
+
+    @media (max-width: 768px) {
+        font-size: 24px;
+    }
 
     z-index: 2;
 `

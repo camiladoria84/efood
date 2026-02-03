@@ -3,16 +3,36 @@ import type { CartItem } from '../../models/CartItem'
 
 export type CheckoutStep = 'cart' | 'delivery' | 'payment' | 'confirmation'
 
+export type Delivery = {
+    receiver: string
+    address: string
+    city: string
+    zipCode: string
+    number: string
+    complement?: string
+}
+
 type CartState = {
     items: CartItem[]
     isOpen: boolean
     step: CheckoutStep
+    delivery: Delivery
+    orderId?: number
 }
 
 const initialState: CartState = {
     items: [],
     isOpen: false,
-    step: 'cart'
+    step: 'cart',
+    delivery: {
+        receiver: '',
+        address: '',
+        city: '',
+        zipCode: '',
+        number: '',
+        complement: ''
+    },
+    orderId: undefined
 }
 
 const cartSlice = createSlice({
@@ -20,9 +40,18 @@ const cartSlice = createSlice({
     initialState,
     reducers: {
         add: (state, action: PayloadAction<CartItem>) => {
-            state.items.push(action.payload)
+            const itemExists = state.items.find(
+                (item) => item.id === action.payload.id
+            )
+
+            if (!itemExists) {
+                // 🔑 CLONE para remover prototype (classe Food)
+                state.items.push({ ...action.payload })
+            }
+
             state.isOpen = true
             state.step = 'cart'
+            state.orderId = undefined
         },
 
         remove: (state, action: PayloadAction<number>) => {
@@ -60,10 +89,27 @@ const cartSlice = createSlice({
             state.step = 'delivery'
         },
 
+        setDelivery: (state, action: PayloadAction<Delivery>) => {
+            state.delivery = action.payload
+        },
+
+        setOrderId: (state, action: PayloadAction<number>) => {
+            state.orderId = action.payload
+        },
+
         clear: (state) => {
             state.items = []
             state.isOpen = false
             state.step = 'cart'
+            state.delivery = {
+                receiver: '',
+                address: '',
+                city: '',
+                zipCode: '',
+                number: '',
+                complement: ''
+            }
+            state.orderId = undefined
         }
     }
 })
@@ -78,6 +124,8 @@ export const {
     openConfirmation,
     backToCart,
     backToDelivery,
+    setDelivery,
+    setOrderId,
     clear
 } = cartSlice.actions
 

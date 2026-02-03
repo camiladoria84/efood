@@ -11,9 +11,9 @@ type Props = {
 
 const Button = ({ color, title, onClick, variant = 'home', disabled, type = 'button' }: Props) => (
     <ButtonContainer
-        color={color}
+        $color={color}
         onClick={onClick}
-        variant={variant}
+        $variant={variant}
         disabled={disabled}
         type={type}
     >

@@ -21,15 +21,17 @@ const Header = () => {
 
     return (
         <S.HeaderContainer style={{ backgroundImage: `url(${bannerImg})` }}>
-        <S.HeaderContent>
-            <S.LinkHome to="/">Restaurantes</S.LinkHome>
+            <S.HeaderContent>
+                <div className="container">
+                    <S.LinkHome to="/">Restaurantes</S.LinkHome>
 
-            <S.Logo src={logo} alt="efood" />
+                    <S.Logo src={logo} alt="efood" />
 
-            <S.CartButton type="button" onClick={openCart}>
-            {itemsCount} produto(s) no carrinho
-            </S.CartButton>
-        </S.HeaderContent>
+                    <S.CartButton type="button" onClick={openCart}>
+                        {itemsCount} produto(s) no carrinho
+                    </S.CartButton>
+                </div>
+            </S.HeaderContent>
         </S.HeaderContainer>
     )
 }

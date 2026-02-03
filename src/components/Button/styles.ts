@@ -2,19 +2,19 @@ import styled from "styled-components"
 import { cores } from "../../styles"
 
 interface Props {
-    color: 'dark' | 'light'
-    variant?: 'home' | 'profile'
+    $color: 'dark' | 'light'
+    $variant?: 'home' | 'profile'
     disabled?: boolean
 }
 
 export const ButtonContainer = styled.button<Props>`
-    display: ${({ variant }) => (variant === 'profile' ? 'block' : 'inline-block')};
-    width: ${({ variant }) => (variant === 'profile' ? '100%' : 'auto')};
-    align-self: ${({ variant }) => (variant === 'profile' ? 'stretch' : 'flex-start')};
+    display: ${({ $variant }) => ($variant === 'profile' ? 'block' : 'inline-block')};
+    width: ${({ $variant }) => ($variant === 'profile' ? '100%' : 'auto')};
+    align-self: ${({ $variant }) => ($variant === 'profile' ? 'stretch' : 'flex-start')};
 
-    background-color: ${({ color }) =>
-        color === 'dark' ? cores.vermelho : cores.bege};
-    color: ${({ color }) => (color === 'dark' ? cores.bege : cores.vermelho)};
+    background-color: ${({ $color }) =>
+        $color === 'dark' ? cores.vermelho : cores.bege};
+    color: ${({ $color }) => ($color === 'dark' ? cores.bege : cores.vermelho)};
 
     text-align: center;
     font-family: Roboto, sans-serif;

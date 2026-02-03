@@ -11,33 +11,50 @@ export const HeaderContainer = styled.header`
 
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-`
-
-export const HeaderContent = styled.div`
-    width: 100%;
-    max-width: 1366px;
-    display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 0 120px;
-    position: relative;
+    height: 186px;
+    padding: 0 16px; 
+    
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        padding: 40px 16px;
+    }
 `
 
 export const Logo = styled.img`
     width: 125px;
     height: 57.5px;
-    position: absolute;
-    top: 63px;
-    left: 50%;
-    transform: translateX(-50%);
+`
+
+export const HeaderContent = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1024px;
+    position: relative;
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 24px;
+        
+        .container {
+            flex-direction: column;
+            gap: 24px;
+        }
+    }
 `
 
 export const LinkHome = styled(Link)`
-    position: absolute;
-    top: 78px;
-    left: 120px;
-
     font-size: 18px;
     font-weight: 900;
     color: ${cores.vermelho};
@@ -49,10 +66,6 @@ export const LinkHome = styled(Link)`
 `
 
 export const CartButton = styled.button`
-    position: absolute;
-    top: 78px;
-    right: 120px;
-
     background: none;
     border: none;
     padding: 0;

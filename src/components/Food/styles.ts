@@ -9,29 +9,30 @@ export const TitleRow = styled.div`
     align-items: center;
 `
 
-export const FoodWrapper = styled.div<{ variant?: 'home' | 'profile' }>`
+export const FoodWrapper = styled.div<{ $variant?: 'home' | 'profile' }>`
     display: flex;
     flex-direction: column;
-    width: ${(props) => (props.variant === 'profile' ? '320px' : '472px')};
+    width: 100%;
     position: relative;
     ${(props) =>
-        props.variant === 'profile' &&
+        props.$variant === 'profile' &&
         css`
-            gap: 40px;
+            gap: 24px;
         `}
 `
 
-export const FoodImage = styled.img<{ variant?: 'home' | 'profile' }>`
+export const FoodImage = styled.img<{ $variant?: 'home' | 'profile' }>`
     width: 100%;
-    height: ${(props) => (props.variant === 'profile' ? '180px' : '217px')};
+    height: ${(props) => (props.$variant === 'profile' ? '180px' : '217px')};
     object-fit: cover;
 `
 
-export const Card = styled.div<{ variant?: 'home' | 'profile' }>`
-    height: ${(props) => (props.variant === 'profile' ? '338px' : '181px')};
-    width: ${(props) => (props.variant === 'profile' ? '320px' : '472px')};
-    background-color: ${(props) => props.variant === 'profile' ? cores.vermelho : cores.bege};
-    padding: ${(props) => (props.variant === 'profile' ? '8px' : '8px')};
+export const Card = styled.div<{ $variant?: 'home' | 'profile' }>`
+    width: 100%;
+    min-height: ${(props) => (props.$variant === 'profile' ? '338px' : 'auto')};
+    background-color: ${(props) =>
+        props.$variant === 'profile' ? cores.vermelho : cores.bege};
+    padding: ${(props) => (props.$variant === 'profile' ? '8px' : '8px')};
     border: 1px solid ${cores.vermelho};
     border-top: none;
     display: flex;
@@ -39,19 +40,21 @@ export const Card = styled.div<{ variant?: 'home' | 'profile' }>`
     justify-content: space-between;
 `
 
-export const Title = styled.h3<{ variant?: 'home' | 'profile' }>`
+export const Title = styled.h3<{ $variant?: 'home' | 'profile' }>`
     font-size: 18px;
     font-weight: 700;
     margin-bottom: 8px;
     margin-top: 8px;
-    color: ${(props) => props.variant === 'profile' ? cores.bege : cores.vermelho};
+    color: ${(props) =>
+        props.$variant === 'profile' ? cores.bege : cores.vermelho};
 `
 
-export const Description = styled.p<{ variant?: 'home' | 'profile' }>`
+export const Description = styled.p<{ $variant?: 'home' | 'profile' }>`
     font-size: 14px;
     line-height: 20px;
     margin-bottom: 8px;
-    color: ${(props) => props.variant === 'profile' ? cores.bege : cores.vermelho};
+    color: ${(props) =>
+        props.$variant === 'profile' ? cores.bege : cores.vermelho};
 `
 
 export const TagsOverlay = styled.div`

@@ -16,7 +16,7 @@ const CartItems = () => {
     const dispatch = useDispatch()
 
     const getTotalPrice = () =>
-        items.reduce((total, item) => total + item.preco, 0)
+        items.reduce((total, item) => total + item.price, 0)
 
     if (items.length === 0) {
         return (
@@ -35,7 +35,7 @@ const CartItems = () => {
 
                         <div>
                             <h3>{item.title}</h3>
-                            <span>{formatPrice(item.preco)}</span>
+                            <span>{formatPrice(item.price)}</span>
                         </div>
 
                         <button

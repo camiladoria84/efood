@@ -8,7 +8,7 @@ export type Props = {
 }
 
 const Tag = ({ children, type = 'categoria' }: Props) => {
-    return <TagContainer type={type}>{children}</TagContainer>
+    return <TagContainer $type={type}>{children}</TagContainer>
 }
 
 export default Tag

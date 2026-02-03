@@ -21,6 +21,7 @@ export const CartContainer = styled.div`
 export const Sidebar = styled.aside`
     background-color: ${cores.vermelho};
     width: 360px;
+    max-width: 100%;
     height: 100vh;
     padding: 32px 8px;
     z-index: 2;
@@ -47,13 +48,12 @@ export const Sidebar = styled.aside`
     }
 `
 
-/* ================= CART ITEMS ================= */
 
 export const CartItem = styled.li`
     position: relative;
     display: flex;
     background-color: ${cores.bege};
-    width: 344px;
+    width: 100%;
     height: 100px;
     padding: 8px;
     margin-bottom: 16px;
@@ -116,7 +116,6 @@ export const EmptyCartMessage = styled.p`
 `
 
 
-/* ================= DELIVERY / PAYMENT ================= */
 
 export const Title = styled.h3`
     color: ${cores.bege};
@@ -154,6 +153,9 @@ export const InputGroup = styled.div`
         font-size: 14px;
         margin-top: 8px;
 
+        &.error {
+            border: 2px solid ${cores.vermelho};
+        }
     }
 `
 

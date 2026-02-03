@@ -16,8 +16,8 @@ type ProfileFood = {
     title: string
     description: string
     image: string
-    porcao: string
-    preco: number
+    portion: string
+    price: number
 }
 
 const Profile = () => {
@@ -42,8 +42,8 @@ const Profile = () => {
         title: item.nome,
         description: item.descricao,
         image: item.foto,
-        porcao: item.porcao,
-        preco: item.preco
+        portion: item.portion,
+        price: item.price
     }))
 
     return (

@@ -6,8 +6,8 @@ export default class Food {
     category: string
     destaque: boolean
     score: number
-    porcao: string
-    preco: number
+    portion: string
+    price: number
 
     constructor(
         id: number,
@@ -17,8 +17,8 @@ export default class Food {
         category: string,
         destaque: boolean,
         score: number,
-        porcao: string,
-        preco: number 
+        portion: string,
+        price: number 
     ) {
         this.id = id
         this.title = title
@@ -27,7 +27,7 @@ export default class Food {
         this.category = category
         this.destaque = destaque
         this.score = score
-        this.porcao = porcao
-        this.preco = preco
+        this.portion = portion
+        this.price = price
     }
 }

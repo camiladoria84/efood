@@ -3,6 +3,6 @@ export type CartItem = {
     title: string
     description: string
     image: string
-    porcao: string
-    preco: number
+    portion: string
+    price: number
 }

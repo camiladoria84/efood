@@ -1,5 +1,6 @@
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
+import type { RootReducer } from '../../store'
 import Button from '../Button'
 import { clear } from '../../store/reducers/cart'
 
@@ -7,12 +8,16 @@ import { Title, Buttons } from './styles'
 
 const Confirmation = () => {
     const dispatch = useDispatch()
-
-    const orderId = Math.floor(Math.random() * 1000000)
+    const orderId = useSelector(
+        (state: RootReducer) => state.cart.orderId
+    )
 
     return (
         <>
-            <Title>Pedido realizado - {orderId}</Title>
+            <Title>
+                Pedido realizado
+                {orderId && ` - ${orderId}`}
+            </Title>
 
             <p>
                 Estamos felizes em informar que seu pedido já está em processo

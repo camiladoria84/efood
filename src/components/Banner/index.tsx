@@ -24,10 +24,8 @@ const RestaurantBanner = ({ image, category, title, isLoading = false }: BannerP
         <BannerContainer>
             <img src={image} alt={title} />
             <div className="container">
-                <div>
-                    <CuisineType>{category}</CuisineType>
-                    <RestaurantName>{title}</RestaurantName>
-                </div>
+                <CuisineType>{category}</CuisineType>
+                <RestaurantName>{title}</RestaurantName>
             </div>
         </BannerContainer>
     )

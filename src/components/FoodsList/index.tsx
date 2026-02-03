@@ -12,8 +12,8 @@ type FoodBase = {
   category?: string
   destaque?: boolean
   score?: number
-  porcao?: string
-  preco?: number
+  portion?: string
+  price?: number
 }
 
 export type Props = {
@@ -40,7 +40,7 @@ const FoodsList = ({
   }
 
   return (
-    <ListContainer columns={columns} gap={gap} variant={variant}>
+    <ListContainer $columns={columns} $gap={gap} $variant={variant}>
       {foods.map((food, index) => (
         <Food
           key={food.id}
@@ -51,8 +51,8 @@ const FoodsList = ({
           category={food.category}
           destaque={index === 0 ? true : food.destaque}
           score={food.score}
-          porcao={food.porcao}
-          preco={food.preco}
+          portion={food.portion}
+          price={food.price}
           variant={variant}
         />
       ))}

@@ -21,6 +21,8 @@ export const BannerContainer = styled.div`
         text-align: center;
         margin: 0 auto;
         padding: 0 16px;
+        width: 100%;
+        max-width: 1024px;
     }
 `
 
@@ -28,6 +30,10 @@ export const LogoImage = styled.img`
     width: 125px;
     height: 57.5px;
     margin-bottom: 64px;
+
+    @media (max-width: 768px) {
+        margin-bottom: 32px;
+    }
 `
 
 export const Title = styled.h2`
@@ -37,4 +43,10 @@ export const Title = styled.h2`
     font-weight: 900;
     color: ${cores.vermelho};
     margin-top: 64px;
+
+    @media (max-width: 768px) {
+        font-size: 24px;
+        margin-top: 32px;
+        max-width: 90%;
+    }
 `

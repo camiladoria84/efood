@@ -15,8 +15,8 @@ export type ModalProps = {
     image: string
     title: string
     description: string
-    porcao?: string
-    preco?: number
+    portion?: string
+    price?: number
 }
 
 const formatPrice = (value: number) =>
@@ -31,8 +31,8 @@ const Modal = ({
     image,
     title,
     description,
-    porcao,
-    preco
+    portion,
+    price
     }: ModalProps) => {
     const dispatch = useDispatch()
 
@@ -40,18 +40,27 @@ const Modal = ({
 
     const handleAddToCart = () => {
         const food = new Food(
-        Date.now(),          // id
+        Date.now(),         
         title,
         description,
         image,
-        '',                  // category (não usada no carrinho)
-        false,               // destaque
-        0,                   // score
-        porcao ?? '',
-        preco ?? 0
+        '',                  
+        false,               
+        0,                   
+        portion ?? '',
+        price ?? 0
         )
 
-        dispatch(add(food))
+        dispatch(
+            add({
+                id: food.id,
+                title: food.title,
+                description: food.description,
+                image: food.image,
+                price: food.price,
+                portion: food.portion
+            })
+            )
         onClose()
     }
 
@@ -69,11 +78,11 @@ const Modal = ({
 
                 <S.ModalDescription>
                     {description}
-                    {porcao && (
+                    {portion && (
                     <>
                         <br />
                         <br />
-                        <strong>Serve:</strong> {porcao}
+                        <strong>Serve:</strong> {portion}
                     </>
                     )}
                 </S.ModalDescription>
@@ -82,8 +91,8 @@ const Modal = ({
                     <Button
                     color="light"
                     title={
-                        preco
-                        ? `Adicionar ao carrinho - ${formatPrice(preco)}`
+                        price
+                        ? `Adicionar ao carrinho - ${formatPrice(price)}`
                         : 'Adicionar ao carrinho'
                     }
                     onClick={handleAddToCart}

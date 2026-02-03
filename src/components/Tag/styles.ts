@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { cores } from '../../styles'
 
 
-export const TagContainer = styled.div<{ type?: 'destaque' | 'categoria' }>`
+export const TagContainer = styled.div<{ $type?: 'destaque' | 'categoria' }>`
   display: inline-block;
   background-color: ${cores.vermelho};
   color: ${cores.bege};

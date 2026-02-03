@@ -13,11 +13,24 @@ export const Overlay = styled.div`
 
 export const ModalContainer = styled.div`
     position: relative;
-    width: 1024px;
+    width: calc(100% - 406px); /* 203px a cada lado */
+    max-width: 1024px;
     height: 344px;
     background-color: ${cores.vermelho};
     display: flex;
     padding: 0;
+
+    @media (max-width: 1024px) {
+        width: calc(100% - 200px); /* 100px a cada lado */
+    }
+
+    @media (max-width: 768px) {
+        width: calc(100% - 60px); /* 30px a cada lado */
+        flex-direction: column;
+        height: auto;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
 `
 
 export const ModalImage = styled.img`
@@ -25,6 +38,12 @@ export const ModalImage = styled.img`
     height: 280px;
     margin: 32px;
     object-fit: cover;
+
+    @media (max-width: 768px) {
+        width: calc(100% - 32px);
+        height: 200px;
+        margin: 16px;
+    }
 `
 
 export const ModalContent = styled.div`
@@ -36,6 +55,10 @@ export const ModalContent = styled.div`
     margin-top: 32px;
     margin-bottom: 32px;
     margin-right: 32px;
+
+    @media (max-width: 768px) {
+        margin: 0 16px 16px 16px;
+    }
 `
 
 export const ModalTitle = styled.h2`
