@@ -76,7 +76,7 @@ export type OrderResponse = {
 }
 
 const API_BASE_URL =
-    import.meta.env.VITE_API_BASE_URL ?? '/api/efood'
+    import.meta.env.VITE_API_BASE_URL ?? 'https://api-ebac.vercel.app/api/efood'
 
 const api = createApi({
     reducerPath: 'efoodApi',
